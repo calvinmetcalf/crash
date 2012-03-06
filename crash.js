@@ -1,14 +1,12 @@
-﻿/*
+/*
 includes elements derived from google maps javascript and fusion table api references 
 http://code.google.com/apis/maps/documentation/javascript/examples/index.html and http://code.google.com/apis/fusiontables/docs/sample_code.html
 both at least the fusion and probobly the maps are lisensed under the apache license, available here http://www.apache.org/licenses/LICENSE-2.0.html
 the exception is the dropdown menus which was based on the OSM SlippyMap Generator http://osmtools.de/easymap/
 */
 var map;
-var geocoder;
 var layer;
 var tableid = 1685213;
-var month;
 var zoom = 8;
 var defaultCenter = new google.maps.LatLng(42.04113400940814, -71.795654296875);
 var geocoder = new google.maps.Geocoder();
@@ -52,9 +50,9 @@ var homeControlerDiv = document.createElement('DIV');
   homeControlerDiv.index = 1;
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(homeControlerDiv);
 
- var jbstate = document.getElementById('description2').className;
+ var jbstate = document.getElementById('nojs').className;
  if  (jbstate != 'hide') {
- document.getElementById('description2').className = 'hide';
+ document.getElementById('nojs').className = 'hide';
  document.getElementById('descriptionbox').className = '';
 }
 }
@@ -69,8 +67,6 @@ function zoomtoaddress() {
       map.setCenter(results[0].geometry.location);
       map.setZoom(14);
       
-      // OPTIONAL: find the new map bounds, and run a spatial query to return
-      // Fusion Tables results within those bounds. 
     
     } 
   });
@@ -149,7 +145,7 @@ function HomeControler(controlerDiv, map) {
   controlerText.style.fontSize = '12px';
   controlerText.style.paddingLeft = '4px';
   controlerText.style.paddingRight = '4px';
-  controlerText.innerHTML = '<a href="http://www.massdot.state.ma.us/planning" tabindex="96"><img src="200px-Planninglogo_svg.png" width="200" alt="logo and link home" border="0"/></a>';
+  controlerText.innerHTML = '<a href="http://www.massdot.state.ma.us/planning" tabindex="96"><img src="logo.png" width="200" alt="logo and link home" border="0"/></a>';
   controlerUI.appendChild(controlerText);
 
   // Setup the click event listeners: simply set the map to Chicago

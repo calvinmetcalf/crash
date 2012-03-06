@@ -62,7 +62,7 @@ background-color: #EEE;
 	font-size: 12px;
 }
 
-#description2 {
+#nojs {
 		z-index: 10000;
 	left: 80px;
 	top: 18px;
@@ -73,3 +73,5 @@ background-color: #EEE;
 }
 
 .hide { display: none; }
+
+.uppercase {text-transform:uppercase;}

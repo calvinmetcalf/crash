@@ -4,48 +4,58 @@
 
 <head id="Head">
 
-
-
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 <script type="text/javascript" src="crash.js"></script>
+
 <link rel="stylesheet" type="text/css" href="crash.css" />
-<link rel="shortcut icon" type="image/x-icon"
- href="favicon.ico" /><title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
-Crash Clusters
-
-</title><script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-26192716-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+<title>Crash Clusters</title>
 </head>
 
 <body onload="initialize();" id="body">
-<div id="description2" >trouble viewing map?<a href="http://www.google.com/fusiontables/DataSource?dsrcid=1685213" target="_blank"> view the table on Google Fusion Tables</a> or <a href="https://www.google.com/fusiontables/api/query?sql=SELECT+*+FROM+1685213" target="_blank">Down Load the Table</a></div>
-     <div id="descriptionbox" class="hide"> <span id="togglebox"><span id="descriptionToggle3" onClick="toggleInfo3()" onkeypress="entertoggle3(event)" tabindex="10"><b>Map</b></span><span id="descriptionToggle" onkeypress="entertoggle(event)" onClick="toggleInfo()" tabindex="20"><b>Search</b></span><span id="descriptionToggle1" onClick="toggleInfo1()" onkeypress="entertoggle1(event)" tabindex="30"><b>Query</b></span>
-     </span>
-	<div id="description3" class="hide"><select id="c4" onchange="changeMap();" tabindex="11">
-   			   <option value=" 'map' = 'All Clusters 2007-2009'" selected="selected">2009 HSIP Clusters</option><option value=" 'map' LIKE 'Pedestrian Clusters 2002-2009'">2009 HSIP Pedestrian Clusters</option><option value=" 'map' LIKE 'Bicycle Clusters 2002-2009'">2009 HSIP Bicycle Clusters</option><option value=" 'map' = 'All Clusters 2007-2009' AND 'maprank' NOT EQUAL TO ''" >Top 200 Intersection Clusters 2007-2009</option>
-   			    <option value=" 'map' LIKE 'all 2008'" >2008 HSIP Clusters</option><option value=" 'map' LIKE 'ped 2008'">2008 HSIP Pedestrian Clusters</option><option value=" 'map' LIKE 'bike 2008'">2008 HSIP Bicycle Clusters</option><option value=" 'map' LIKE 'all 2008' AND 'Rank' NOT EQUAL TO '0'" >Top 200 Intersection Clusters 2006-2008</option></select>
-</div><div id="description" class="hide"> <input type="text" id="address" style="width:16em;" value="Enter an Address or LatLong" onClick="SelectAll('address');" tabindex="21"/>
-  <input type="button" onclick="zoomtoaddress()" value="Search" tabindex="22"/><input type="button" onclick="reset()" value="Reset" tabindex="23"/></div> <div id="description1" class="hide">
+
+
+<div id="nojs" >
+trouble viewing map?<a href="http://www.google.com/fusiontables/DataSource?dsrcid=1685213" target="_blank"> view the table on Google Fusion Tables</a> or <a href="https://www.google.com/fusiontables/api/query?sql=SELECT+*+FROM+1685213" target="_blank">Down Load the Table</a>
+</div>
+     
+<div id="descriptionbox" class="hide"> 
+<span id="togglebox">
+<span id="descriptionToggle3" onClick="toggleInfo3()" onkeypress="entertoggle3(event)" tabindex="10">
+<b>Map</b>
+</span>
+<span id="descriptionToggle" onkeypress="entertoggle(event)" onClick="toggleInfo()" tabindex="20">
+<b>Search</b>
+</span>
+<span id="descriptionToggle1" onClick="toggleInfo1()" onkeypress="entertoggle1(event)" tabindex="30">
+<b>Query</b>
+</span>
+</span>
+<div id="description3" class="hide">
+<select id="c4" onchange="changeMap();" tabindex="11">
+    <option value=" 'map' = 'All Clusters 2007-2009'" selected="selected">2009 HSIP Clusters</option>
+    <option value=" 'map' LIKE 'Pedestrian Clusters 2002-2009'">2009 HSIP Pedestrian Clusters</option>
+    <option value=" 'map' LIKE 'Bicycle Clusters 2002-2009'">2009 HSIP Bicycle Clusters</option>
+    <option value=" 'map' = 'All Clusters 2007-2009' AND 'maprank' NOT EQUAL TO ''" >Top 200 Intersection Clusters 2007-2009</option>
+    <option value=" 'map' LIKE 'all 2008'" >2008 HSIP Clusters</option>
+    <option value=" 'map' LIKE 'ped 2008'">2008 HSIP Pedestrian Clusters</option>
+    <option value=" 'map' LIKE 'bike 2008'">2008 HSIP Bicycle Clusters</option>
+    <option value=" 'map' LIKE 'all 2008' AND 'Rank' NOT EQUAL TO '0'" >Top 200 Intersection Clusters 2006-2008</option>
+</select>
+</div>
+<div id="description" class="hide">
+<input type="text" id="address" style="width:16em;" value="Enter an Address or LatLong" onClick="SelectAll('address');" tabindex="21"/>
+<input type="button" onclick="zoomtoaddress()" value="Search" tabindex="22"/>
+<input type="button" onclick="reset()" value="Reset" tabindex="23"/>
+</div>
+<div id="description1" class="hide">
 <select id="c1" style="width:18em;" onchange="changeMap();" class="hide">
-   			    <option value="'point'" selected="selected" id="pt">point</option>
-   			    <option value="'poly'" id="geom">geometry</option></select>
+<option value="'point'" selected="selected" id="pt">point</option>
+<option value="'poly'" id="geom">geometry</option></select>
 <select id="c3" onchange="changeMap();" tabindex="32">
-   			    <option value="">All RPAs</option>
-    
+    <option value="">All RPAs</option>
     <option value=" AND 'RPA' CONTAINS 'BERKSHIRE COUNTY REGIONAL PLANNING COMMISSION'">BRPC</option>
     <option value=" AND 'RPA' CONTAINS 'CAPE COD COMMISSION'">CCC</option>	
     <option value=" AND 'RPA' CONTAINS 'CENTRAL MASSACHUSETTS REGIONAL PLANNING COMMISSION'">CMRPC</option>
@@ -59,24 +69,25 @@ Crash Clusters
     <option value=" AND 'RPA' CONTAINS 'PIONEER VALLEY PLANNING COMMISSION'">PVPC</option>
     <option value=" AND 'RPA' CONTAINS 'SOUTHEAST REGIONAL PLANNING & ECONOMIC DEVELOPMENT DISTRICT'">SRPEDD</option>
     <option value=" and 'RPA' Contains 'NANTUCKET PLANNING & ECONOMIC DEVELOPMENT COMMISSION'">NP&EDC</option>
-    </select>
+</select>
 
-<select id="c2" onchange="changeMap();" tabindex="33">
-<option value="">All Cities Towns</option>
-   			   <option value=" AND 'Municipality' Contains 'ABINGTON'">ABINGTON</option>
+<select id="c2" onchange="changeMap();" tabindex="33" class="uppercase">
+    <option value="">ALL CITIES AND TOWNS</option>
+   	<option value=" AND 'Municipality' Contains 'ABINGTON'">ABINGTON</option>
     <option value=" AND 'Municipality' Contains 'ACTON'">ACTON</option>
+    <option value=" AND 'Municipality' Contains 'Adams'">Adams</option>
     <option value=" AND 'Municipality' Contains 'AGAWAM'">AGAWAM</option>
     <option value=" AND 'Municipality' Contains 'AMESBURY'">AMESBURY</option>
     <option value=" AND 'Municipality' Contains 'AMHERST'">AMHERST</option>
+    <option value=" AND 'Municipality' Contains 'Andover'">Andover</option>
     <option value=" AND 'Municipality' Contains 'ARLINGTON'">ARLINGTON</option>
     <option value=" AND 'Municipality' Contains 'ASHBURNHAM'">ASHBURNHAM</option>
     <option value=" AND 'Municipality' Contains 'ASHLAND'">ASHLAND</option>
     <option value=" AND 'Municipality' Contains 'ATTLEBORO'">ATTLEBORO</option>
     <option value=" AND 'Municipality' Contains 'AUBURN'">AUBURN</option>
     <option value=" AND 'Municipality' Contains 'AVON'">AVON</option>
-    <option value=" AND 'Municipality' Contains 'Adams'">Adams</option>
-    <option value=" AND 'Municipality' Contains 'Andover'">Andover</option>
     <option value=" AND 'Municipality' Contains 'BARNSTABLE'">BARNSTABLE</option>
+    <option value=" AND 'Municipality' Contains 'Bedford'">Bedford</option>
     <option value=" AND 'Municipality' Contains 'BELCHERTOWN'">BELCHERTOWN</option>
     <option value=" AND 'Municipality' Contains 'BELLINGHAM'">BELLINGHAM</option>
     <option value=" AND 'Municipality' Contains 'BELMONT'">BELMONT</option>
@@ -90,11 +101,10 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'BOURNE'">BOURNE</option>
     <option value=" AND 'Municipality' Contains 'BOXBOROUGH'">BOXBOROUGH</option>
     <option value=" AND 'Municipality' Contains 'BRAINTREE'">BRAINTREE</option>
+    <option value=" AND 'Municipality' Contains 'Bridgewater'">Bridgewater</option>
     <option value=" AND 'Municipality' Contains 'BROCKTON'">BROCKTON</option>
     <option value=" AND 'Municipality' Contains 'BROOKLINE'">BROOKLINE</option>
     <option value=" AND 'Municipality' Contains 'BURLINGTON'">BURLINGTON</option>
-    <option value=" AND 'Municipality' Contains 'Bedford'">Bedford</option>
-    <option value=" AND 'Municipality' Contains 'Bridgewater'">Bridgewater</option>
     <option value=" AND 'Municipality' Contains 'CAMBRIDGE'">CAMBRIDGE</option>
     <option value=" AND 'Municipality' Contains 'CANTON'">CANTON</option>
     <option value=" AND 'Municipality' Contains 'CARVER'">CARVER</option>
@@ -115,7 +125,6 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'DUDLEY'">DUDLEY</option>
     <option value=" AND 'Municipality' Contains 'DUXBURY'">DUXBURY</option>
     <option value=" AND 'Municipality' Contains 'EAST BRIDGEWATER'">EAST BRIDGEWATER</option>
-#VALUE!
     <option value=" AND 'Municipality' Contains 'EAST LONGMEADOW'">EAST LONGMEADOW</option>
     <option value=" AND 'Municipality' Contains 'EASTHAM'">EASTHAM</option>
     <option value=" AND 'Municipality' Contains 'EASTON'">EASTON</option>
@@ -138,6 +147,7 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'GREENFIELD'">GREENFIELD</option>
     <option value=" AND 'Municipality' Contains 'GROTON'">GROTON</option>
     <option value=" AND 'Municipality' Contains 'GROVELAND'">GROVELAND</option>
+    <option value=" AND 'Municipality' Contains 'Hadley'">Hadley</option>
     <option value=" AND 'Municipality' Contains 'HANOVER'">HANOVER</option>
     <option value=" AND 'Municipality' Contains 'HARVARD'">HARVARD</option>
     <option value=" AND 'Municipality' Contains 'HARWICH'">HARWICH</option>
@@ -149,20 +159,21 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'HOLYOKE'">HOLYOKE</option>
     <option value=" AND 'Municipality' Contains 'HOPKINTON'">HOPKINTON</option>
     <option value=" AND 'Municipality' Contains 'HUDSON'">HUDSON</option>
-    <option value=" AND 'Municipality' Contains 'Hadley'">Hadley</option>
     <option value=" AND 'Municipality' Contains 'KINGSTON'">KINGSTON</option>
+    <option value=" AND 'Municipality' Contains 'LAKEVILLE'">LAKEVILLE</option>
     <option value=" AND 'Municipality' Contains 'LANCASTER'">LANCASTER</option>
     <option value=" AND 'Municipality' Contains 'LAWRENCE'">LAWRENCE</option>
+    <option value=" AND 'Municipality' Contains 'LEICESTER'">LEICESTER</option>
     <option value=" AND 'Municipality' Contains 'LENOX'">LENOX</option>
     <option value=" AND 'Municipality' Contains 'LEOMINSTER'">LEOMINSTER</option>
     <option value=" AND 'Municipality' Contains 'LEXINGTON'">LEXINGTON</option>
     <option value=" AND 'Municipality' Contains 'LINCOLN'">LINCOLN</option>
     <option value=" AND 'Municipality' Contains 'LITTLETON'">LITTLETON</option>
+    <option value=" AND 'Municipality' Contains 'Longmeadow'">Longmeadow</option>
     <option value=" AND 'Municipality' Contains 'LOWELL'">LOWELL</option>
     <option value=" AND 'Municipality' Contains 'LUDLOW'">LUDLOW</option>
     <option value=" AND 'Municipality' Contains 'LUNENBURG'">LUNENBURG</option>
     <option value=" AND 'Municipality' Contains 'LYNN'">LYNN</option>
-    <option value=" AND 'Municipality' Contains 'Longmeadow'">Longmeadow</option>
     <option value=" AND 'Municipality' Contains 'Lynnfield'">Lynnfield</option>
     <option value=" AND 'Municipality' Contains 'MALDEN'">MALDEN</option>
     <option value=" AND 'Municipality' Contains 'MANCHESTER BY THE SEA'">MANCHESTER BY THE SEA</option>
@@ -171,6 +182,7 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'MARLBOROUGH'">MARLBOROUGH</option>
     <option value=" AND 'Municipality' Contains 'MARSHFIELD'">MARSHFIELD</option>
     <option value=" AND 'Municipality' Contains 'MASHPEE'">MASHPEE</option>
+    <option value=" AND 'Municipality' Contains 'MEDFIELD'">MEDFIELD</option>
     <option value=" AND 'Municipality' Contains 'MEDFORD'">MEDFORD</option>
     <option value=" AND 'Municipality' Contains 'MEDWAY'">MEDWAY</option>
     <option value=" AND 'Municipality' Contains 'MELROSE'">MELROSE</option>
@@ -186,18 +198,19 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'NATICK'">NATICK</option>
     <option value=" AND 'Municipality' Contains 'NEEDHAM'">NEEDHAM</option>
     <option value=" AND 'Municipality' Contains 'NEW BEDFORD'">NEW BEDFORD</option>
+    <option value=" AND 'Municipality' Contains 'NEWBURYPORT'">NEWBURYPORT</option>
     <option value=" AND 'Municipality' Contains 'NEWTON'">NEWTON</option>
     <option value=" AND 'Municipality' Contains 'NORFOLK'">NORFOLK</option>
     <option value=" AND 'Municipality' Contains 'NORTH ADAMS'">NORTH ADAMS</option>
     <option value=" AND 'Municipality' Contains 'NORTH ANDOVER'">NORTH ANDOVER</option>
     <option value=" AND 'Municipality' Contains 'NORTH ATTLEBOROUGH'">NORTH ATTLEBOROUGH</option>
+    <option value=" AND 'Municipality' Contains 'North Reading'">North Reading</option>
     <option value=" AND 'Municipality' Contains 'NORTHAMPTON'">NORTHAMPTON</option>
     <option value=" AND 'Municipality' Contains 'NORTHBOROUGH'">NORTHBOROUGH</option>
     <option value=" AND 'Municipality' Contains 'NORTHBRIDGE'">NORTHBRIDGE</option>
     <option value=" AND 'Municipality' Contains 'NORTON'">NORTON</option>
     <option value=" AND 'Municipality' Contains 'NORWELL'">NORWELL</option>
     <option value=" AND 'Municipality' Contains 'NORWOOD'">NORWOOD</option>
-    <option value=" AND 'Municipality' Contains 'North Reading'">North Reading</option>
     <option value=" AND 'Municipality' Contains 'OAK BLUFFS'">OAK BLUFFS</option>
     <option value=" AND 'Municipality' Contains 'ORANGE'">ORANGE</option>
     <option value=" AND 'Municipality' Contains 'ORLEANS'">ORLEANS</option>
@@ -221,6 +234,7 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'SALISBURY'">SALISBURY</option>
     <option value=" AND 'Municipality' Contains 'SANDWICH'">SANDWICH</option>
     <option value=" AND 'Municipality' Contains 'SAUGUS'">SAUGUS</option>
+    <option value=" AND 'Municipality' Contains 'SCITUATE'">SCITUATE</option>
     <option value=" AND 'Municipality' Contains 'SEEKONK'">SEEKONK</option>
     <option value=" AND 'Municipality' Contains 'SHARON'">SHARON</option>
     <option value=" AND 'Municipality' Contains 'SHREWSBURY'">SHREWSBURY</option>
@@ -231,15 +245,16 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'SOUTHBRIDGE'">SOUTHBRIDGE</option>
     <option value=" AND 'Municipality' Contains 'SOUTHWICK'">SOUTHWICK</option>
     <option value=" AND 'Municipality' Contains 'SPENCER'">SPENCER</option>
+    <option value=" AND 'Municipality' Contains 'Springfield'">Springfield</option>
     <option value=" AND 'Municipality' Contains 'STERLING'">STERLING</option>
     <option value=" AND 'Municipality' Contains 'STOCKBRIDGE'">STOCKBRIDGE</option>
     <option value=" AND 'Municipality' Contains 'STONEHAM'">STONEHAM</option>
     <option value=" AND 'Municipality' Contains 'STOUGHTON'">STOUGHTON</option>
     <option value=" AND 'Municipality' Contains 'STURBRIDGE'">STURBRIDGE</option>
+    <option value=" AND 'Municipality' Contains 'SUDBURY'">SUDBURY</option>
     <option value=" AND 'Municipality' Contains 'SUTTON'">SUTTON</option>
     <option value=" AND 'Municipality' Contains 'SWAMPSCOTT'">SWAMPSCOTT</option>
     <option value=" AND 'Municipality' Contains 'SWANSEA'">SWANSEA</option>
-    <option value=" AND 'Municipality' Contains 'Springfield'">Springfield</option>
     <option value=" AND 'Municipality' Contains 'TAUNTON'">TAUNTON</option>
     <option value=" AND 'Municipality' Contains 'TEWKSBURY'">TEWKSBURY</option>
     <option value=" AND 'Municipality' Contains 'TISBURY'">TISBURY</option>
@@ -251,6 +266,7 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'WAKEFIELD'">WAKEFIELD</option>
     <option value=" AND 'Municipality' Contains 'WALPOLE'">WALPOLE</option>
     <option value=" AND 'Municipality' Contains 'WALTHAM'">WALTHAM</option>
+    <option value=" AND 'Municipality' Contains 'WARE'">WARE</option>
     <option value=" AND 'Municipality' Contains 'WAREHAM'">WAREHAM</option>
     <option value=" AND 'Municipality' Contains 'WATERTOWN'">WATERTOWN</option>
     <option value=" AND 'Municipality' Contains 'WAYLAND'">WAYLAND</option>
@@ -278,29 +294,22 @@ Crash Clusters
     <option value=" AND 'Municipality' Contains 'WORCESTER'">WORCESTER</option>
     <option value=" AND 'Municipality' Contains 'WRENTHAM'">WRENTHAM</option>
     <option value=" AND 'Municipality' Contains 'YARMOUTH'">YARMOUTH</option>
-    <option value=" AND 'Municipality' Contains 'LAKEVILLE'">LAKEVILLE</option>
-    <option value=" AND 'Municipality' Contains 'LEICESTER'">LEICESTER</option>
-    <option value=" AND 'Municipality' Contains 'MEDFIELD'">MEDFIELD</option>
-    <option value=" AND 'Municipality' Contains 'NEWBURYPORT'">NEWBURYPORT</option>
-    <option value=" AND 'Municipality' Contains 'SCITUATE'">SCITUATE</option>
-    <option value=" AND 'Municipality' Contains 'SUDBURY'">SUDBURY</option>
-    <option value=" AND 'Municipality' Contains 'WARE'">WARE</option></select>
-    <select id="c5" onchange="changeMap();" tabindex="34">
-<option value="">All Highway Districts</option>
-<option value=" AND 'MassDOT District' = 1">District One</option>
-<option value=" AND 'MassDOT District' = 2">District Two</option>
-<option value=" AND 'MassDOT District' = 3">District Three</option>
-<option value=" AND 'MassDOT District' = 4">District Four</option>
-<option value=" AND 'MassDOT District' = 5">District Five</option>
-<option value=" AND 'MassDOT District' = 6">District Six</option>
+
 </select>
-    </div></div><div id="map_canvas"></div>
-<!-- End_Module_1597 -->       
-
     
-
-
-
+<select id="c5" onchange="changeMap();" tabindex="34">
+    <option value="">All Highway Districts</option>
+    <option value=" AND 'MassDOT District' = 1">District One</option>
+    <option value=" AND 'MassDOT District' = 2">District Two</option>
+    <option value=" AND 'MassDOT District' = 3">District Three</option>
+    <option value=" AND 'MassDOT District' = 4">District Four</option>
+    <option value=" AND 'MassDOT District' = 5">District Five</option>
+    <option value=" AND 'MassDOT District' = 6">District Six</option>
+</select>
+</div>
+</div>
+    
+<div id="map_canvas"></div>
 
 </body>
 
