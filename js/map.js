@@ -95,10 +95,17 @@ function getData(response) {
   // Add options to the select menu based on the results
   typeSelect = document.getElementById(selectID);  
   for(i = 0; i < numRows; i++) {
-      newoption = document.createElement('option');
-      newoption.setAttribute('value',querryText + response.getDataTable().getValue(i, 0) + "'");
-  	newoption.innerHTML = response.getDataTable().getValue(i, 0);
-  	typeSelect.appendChild(newoption);
+      ftData = response.getDataTable().getValue(i, 0);
+      if (!ftData)
+     { continue;}
+     else if
+     (String(ftData).indexOf(",")>-1)
+     {continue;}
+     else
+     { newoption = document.createElement('option');
+      newoption.setAttribute('value',querryText + ftData + "'");
+  	newoption.innerHTML = ftData;
+  	typeSelect.appendChild(newoption);}
   }  
 };
 return getData;
