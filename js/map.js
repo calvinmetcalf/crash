@@ -5,6 +5,7 @@ var zoom = 8;
 var center = new google.maps.LatLng(42.04113400940814,-71.795654296875);
 var marker;
 var mainLayer;
+var geom = "point";
 
 function initialize() {
     
@@ -15,8 +16,21 @@ function initialize() {
     });
 
  mainLayer = new google.maps.FusionTablesLayer(tid);
-  mainLayer.setQuery("SELECT 'point' FROM " + tid + " WHERE 'map' = 'All Clusters 2007-2009'");
+  mainLayer.setQuery("SELECT " + geom + " FROM " + tid + " WHERE 'map' = 'All Clusters 2007-2009'");
   mainLayer.setMap(m);
+  
+  google.maps.event.addListener(m, 'zoom_changed', function() {
+     var zoomLevel = m.getZoom();
+      if (zoomLevel >=13){
+          geom = "poly";
+      }
+      else
+      {
+          geom = "point";
+      }
+ 
+  changeMap();
+   });
   }
 
 function geocode() {
@@ -135,6 +149,6 @@ function changeMap() {
   var rpa = document.getElementById('rpa').value.replace("'", "\\'");
   var muni = document.getElementById('muni').value.replace("'", "\\'");
   var highwayDistrict = document.getElementById('highwayDistrict').value.replace("'", "\\'");
-  mainLayer.setQuery("SELECT 'point' FROM " + tid + mapName + rpa + muni + highwayDistrict);
+  mainLayer.setQuery("SELECT " + geom + " FROM " + tid + mapName + rpa + muni + highwayDistrict);
  
 }
