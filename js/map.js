@@ -7,7 +7,19 @@ var marker;
 var mainLayer;
 var geom = "point";
 
-function initialize() {
+$(function() {
+        $( "#tabs" ).tabs({
+    		collapsible: true,
+            selected: -1
+		});
+        $( "input:submit,input:reset" ).button();
+        $('input, textarea').placeholder();
+        fusion();
+        popLists();
+	});
+
+
+function fusion() {
     
   m = new google.maps.Map(document.getElementById('map'), {
       center: center,
@@ -55,15 +67,6 @@ function resetgeo() {
     m.setZoom(zoom);
 marker.setMap(null);
 }
-
- $(function() {
-        $( "#tabs" ).tabs({
-			collapsible: true,
-            selected: -1
-		});
-        $( "input:submit,input:reset" ).button();
-        $('input, textarea').placeholder();
-	});
     
     google.load('visualization', '1', {});
     
@@ -87,26 +90,26 @@ function MakeData(selectID,querryText){
 
 function getData(response) {
   // Get the number of rows
-  numRows = response.getDataTable().getNumberOfRows();
+var numRows = response.getDataTable().getNumberOfRows();
   
   // Add options to the select menu based on the results
-  typeSelect = document.getElementById(selectID);  
+ var typeSelect = document.getElementById(selectID);  
   for(i = 0; i < numRows; i++) {
-      ftData = response.getDataTable().getValue(i, 0);
+      var ftData = response.getDataTable().getValue(i, 0);
       if (!ftData)
      { continue;}
      else if
      (String(ftData).indexOf(",")>-1)
      {continue;}
      else
-     { newoption = document.createElement('option');
+     { var newoption = document.createElement('option');
       newoption.setAttribute('value',querryText + ftData + "'");
-  	newoption.innerHTML = ftData;
-  	typeSelect.appendChild(newoption);}
+    newoption.innerHTML = ftData;
+    typeSelect.appendChild(newoption);}
   }  
-};
+}
 return getData;
-};
+}
 
 var getRPAData = MakeData("rpa"," AND 'RPA' CONTAINS '");
 var getMuniData = MakeData("muni", " AND 'Municipality' CONTAINS '");
