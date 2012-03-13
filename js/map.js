@@ -68,9 +68,6 @@ marker.setMap(null);
     google.load('visualization', '1', {});
     
 function popLists(){    
- var queryMapNameText = encodeURIComponent("SELECT 'map', COUNT() FROM " + tid + " GROUP BY 'map'");
-	var queryMapName = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryMapNameText);
-	queryMapName.send(getMapNameData);
 
     var queryRPAText = encodeURIComponent("SELECT 'RPA', COUNT() FROM " + tid + " GROUP BY 'RPA'");
     var queryRPA = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryRPAText);
@@ -112,7 +109,6 @@ return getData;
 };
 
 var getRPAData = MakeData("rpa"," AND 'RPA' CONTAINS '");
-var getMapNameData = MakeData("mapName"," WHERE 'map' = '");
 var getMuniData = MakeData("muni", " AND 'Municipality' CONTAINS '");
 var getHighwayDistrictData = MakeData("highwayDistrict"," AND 'MassDOT District' = '");
 

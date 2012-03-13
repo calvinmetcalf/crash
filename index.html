@@ -27,7 +27,16 @@ Crash Clusters
 		<li><a href="#tabs-3">Query</a></li>
 	</ul>
     <div id="tabs-1">
-    <select id="mapName" onchange="changeMap();"></select>
+    <select id="mapName" onchange="changeMap();">
+    <option value=" WHERE 'map' = 'All Clusters 2007-2009'" selected="selected">2009 HSIP Clusters</option>
+    <option value=" WHERE 'map' LIKE 'Pedestrian Clusters 2002-2009'">2009 HSIP Pedestrian Clusters</option>
+    <option value=" WHERE 'map' LIKE 'Bicycle Clusters 2002-2009'">2009 HSIP Bicycle Clusters</option>
+    <option value=" WHERE 'map' = 'All Clusters 2007-2009' AND 'maprank' NOT EQUAL TO ''" >Top 200 Intersection Clusters 2007-2009</option>
+    <option value=" WHERE 'map' LIKE 'all 2008'" >2008 HSIP Clusters</option>
+    <option value=" WHERE 'map' LIKE 'ped 2008'">2008 HSIP Pedestrian Clusters</option>
+    <option value=" WHERE 'map' LIKE 'bike 2008'">2008 HSIP Bicycle Clusters</option>
+    <option value=" WHERE 'map' LIKE 'all 2008' AND 'Rank' NOT EQUAL TO '0'" >Top 200 Intersection Clusters 2006-2008</option>
+    </select>
     </div>
 	<div id="tabs-2">
 		 <input type="text" id="address" style="width:16em;" placeholder="Enter an Address or LatLong" />
