@@ -85,64 +85,30 @@ function popLists(){
 	queryHighwayDistrict.send(getHighwayDistrictData);
 }
 
-function getMapNameData(response) {
-  
+
+function MakeData(selectID,querryText){
+
+function getData(response) {
   // Get the number of rows
   numRows = response.getDataTable().getNumberOfRows();
   
   // Add options to the select menu based on the results
-  typeSelect = document.getElementById("mapName");  
+  typeSelect = document.getElementById(selectID);  
   for(i = 0; i < numRows; i++) {
       newoption = document.createElement('option');
-  	newoption.setAttribute('value'," WHERE 'map' = '" + response.getDataTable().getValue(i, 0) + "'");
+      newoption.setAttribute('value',querryText + response.getDataTable().getValue(i, 0) + "'");
   	newoption.innerHTML = response.getDataTable().getValue(i, 0);
   	typeSelect.appendChild(newoption);
   }  
-}
+};
+return getData;
+};
 
-function getRPAData(response) {
-  
-  // Get the number of rows
-  numRows = response.getDataTable().getNumberOfRows();
-  
-  // Add options to the select menu based on the results
-  typeSelect = document.getElementById("rpa");  
-  for(i = 0; i < numRows; i++) {
-      newoption = document.createElement('option');
-  	newoption.setAttribute('value'," AND 'RPA' CONTAINS '" + response.getDataTable().getValue(i, 0) + "'");
-  	newoption.innerHTML = response.getDataTable().getValue(i, 0);
-  	typeSelect.appendChild(newoption);
-  }  
-}
+var getRPAData = MakeData("rpa"," AND 'RPA' CONTAINS '");
+var getMapNameData = MakeData("mapName"," WHERE 'map' = '");
+var getMuniData = MakeData("muni", " AND 'Municipality' CONTAINS '");
+var getHighwayDistrictData = MakeData("highwayDistrict"," AND 'MassDOT District' = '");
 
-function getMuniData(response) {
-  
-  // Get the number of rows
-  numRows = response.getDataTable().getNumberOfRows();
-  
-  // Add options to the select menu based on the results
-  OwnerSelect = document.getElementById("muni");  
-  for(i = 0; i < numRows; i++) {
-      newoption = document.createElement('option');
- 	newoption.setAttribute('value'," AND 'Municipality' CONTAINS '" + response.getDataTable().getValue(i, 0) + "'");
-  	newoption.innerHTML = response.getDataTable().getValue(i, 0);
-  	OwnerSelect.appendChild(newoption);
-  }  
-}
-function getHighwayDistrictData(response) {
-  
-  // Get the number of rows
-  numRows = response.getDataTable().getNumberOfRows();
-  
-  // Add options to the select menu based on the results
-  budgetSelect = document.getElementById("highwayDistrict");  
-  for(i = 0; i < numRows; i++) {
-  	newoption = document.createElement('option');
-  	newoption.setAttribute('value'," AND 'MassDOT District' = '" + response.getDataTable().getValue(i, 0) + "'");
-  	newoption.innerHTML = response.getDataTable().getValue(i, 0);
-  	budgetSelect.appendChild(newoption);
-  }  
-}
 
 function changeMap() {
   var mapName = document.getElementById('mapName').value.replace("'", "\\'");
