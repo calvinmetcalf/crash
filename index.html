@@ -10,16 +10,17 @@ Crash Clusters
 <!--style sheets-->
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/map.css" type="text/css" />
-<link rel="stylesheet" href="css/smoothness.css" type="text/css" />
+<link rel="stylesheet" href="http://calvinmetcalf.github.com/smoothness/smoothness.css" type="text/css" />
 <!--scripts-->
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBvl2Lx_Tj-9N_fT9arfnl8utRkVPe50uA&sensor=false"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript" src="http://calvinmetcalf.github.com/jquery-placeholder/jquery.placeholder.min.js"></script>
 </head>
-<body onload="initialize();popLists();">
+<body>
 <div id="tabs">
     <ul>
     <li><a href="#tabs-1">Map</a></li>
@@ -27,7 +28,16 @@ Crash Clusters
 		<li><a href="#tabs-3">Query</a></li>
 	</ul>
     <div id="tabs-1">
-    <select id="mapName" onchange="changeMap();"></select>
+    <select id="mapName" onchange="changeMap();">
+    <option value=" WHERE 'map' = 'All Clusters 2007-2009'" selected="selected">2009 HSIP Clusters</option>
+    <option value=" WHERE 'map' LIKE 'Pedestrian Clusters 2002-2009'">2009 HSIP Pedestrian Clusters</option>
+    <option value=" WHERE 'map' LIKE 'Bicycle Clusters 2002-2009'">2009 HSIP Bicycle Clusters</option>
+    <option value=" WHERE 'map' = 'All Clusters 2007-2009' AND 'maprank' NOT EQUAL TO ''" >Top 200 Intersection Clusters 2007-2009</option>
+    <option value=" WHERE 'map' LIKE 'all 2008'" >2008 HSIP Clusters</option>
+    <option value=" WHERE 'map' LIKE 'ped 2008'">2008 HSIP Pedestrian Clusters</option>
+    <option value=" WHERE 'map' LIKE 'bike 2008'">2008 HSIP Bicycle Clusters</option>
+    <option value=" WHERE 'map' LIKE 'all 2008' AND 'Rank' NOT EQUAL TO '0'" >Top 200 Intersection Clusters 2006-2008</option>
+    </select>
     </div>
 	<div id="tabs-2">
 		 <input type="text" id="address" style="width:16em;" placeholder="Enter an Address or LatLong" />
@@ -37,7 +47,7 @@ Crash Clusters
         </div>
 	<div id="tabs-3">
 	<select id="rpa" onchange="changeMap();"><option value="">All RPAs</option></select>
-		<select id="muni" onchange="changeMap();"><option value="">All Cities and Towns</option></select>
+		<select id="muni" onchange="changeMap();" class="upper"><option value="">All Cities and Towns</option></select>
         <select id="highwayDistrict" onchange="changeMap();"><option value="">All Highway Districts</option></select>
          
         </div>
