@@ -33,7 +33,7 @@ function fusion() {
   
   google.maps.event.addListener(m, 'zoom_changed', function() {
      var zoomLevel = m.getZoom();
-      if (zoomLevel >=13){
+      if (zoomLevel >13){
           geom = "poly";
       }
       else
