@@ -3,7 +3,7 @@ var tid = 1685213;
 var geocoder = new google.maps.Geocoder();
 var zoom = 8;
 var center = new google.maps.LatLng(42.04113400940814,-71.795654296875);
-var google = this.google;
+//var google = this.google;
 var geom = "point";
 
 $(function() {
