@@ -1,15 +1,14 @@
-var m;
+var m,marker,mainLayer;
 var tid = 1685213;
 var geocoder = new google.maps.Geocoder();
 var zoom = 8;
 var center = new google.maps.LatLng(42.04113400940814,-71.795654296875);
-var marker;
-var mainLayer;
+var google = this.google;
 var geom = "point";
 
 $(function() {
         $( "#tabs" ).tabs({
-        	collapsible: true,
+        collapsible: true,
             selected: -1
 		});
         $( "input:submit,input:reset" ).button();
@@ -28,7 +27,7 @@ function fusion() {
     });
 
  mainLayer = new google.maps.FusionTablesLayer(tid);
-  mainLayer.setQuery("SELECT " + geom + " FROM " + tid + " WHERE 'map' = 'All Clusters 2007-2009'");
+  mainLayer.setQuery("SELECT " + geom + " FROM " + tid + " WHERE 'map' = 'All Clusters 2007-2009' AND 'maprank' NOT EQUAL TO ''");
   mainLayer.setMap(m);
   
   google.maps.event.addListener(m, 'zoom_changed', function() {
