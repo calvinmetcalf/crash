@@ -93,7 +93,7 @@ var numRows = response.getDataTable().getNumberOfRows();
   
   // Add options to the select menu based on the results
  var typeSelect = document.getElementById(selectID);  
-  for(i = 0; i < numRows; i++) {
+  for(var i = 0; i < numRows; i++) {
       var ftData = response.getDataTable().getValue(i, 0);
       if (!ftData)
      { continue;}
