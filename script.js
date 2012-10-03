@@ -16,12 +16,12 @@ m = new L.Map("map", {
 
 h = new L.Hash(m);
 
-defaultLayer = new L.tileLayer.mapQuestOpen.osm();
+defaultLayer = L.tileLayer.mapQuestOpen.osm();
 
 m.addLayer(defaultLayer);
 
 oef = function(v, l) {
-  return l.bindPopup("Crash Count: " + v.properties.CrashCount + "<br/>EPDO: " + v.properties.EPDO + "<br/>FATAL: " + v.properties.FATAL + "<br/>INJURY: " + v.properties.INJURY + "<br/>NONINJ: " + v.properties.NONINJ + v.properties.RANK);
+  return l.bindPopup("Crash Count: " + v.properties.CrashCount + "<br/>EPDO: " + v.properties.EPDO + "<br/>FATAL: " + v.properties.FATAL + "<br/>INJURY: " + v.properties.INJURY + "<br/>NONINJ: " + v.properties.NONINJ + "<br/>Map: " + v.properties.Map + "<br/>RANK: " + v.properties.RANK);
 };
 
 filter = {
@@ -39,13 +39,21 @@ filter = {
   }
 };
 
-HSIP = new L.MarkerClusterGroup();
+HSIP = new L.MarkerClusterGroup({
+  disableClusteringAtZoom: 15
+});
 
-BIKE = new L.MarkerClusterGroup();
+BIKE = new L.MarkerClusterGroup({
+  disableClusteringAtZoom: 15
+});
 
-PED = new L.MarkerClusterGroup();
+PED = new L.MarkerClusterGroup({
+  disableClusteringAtZoom: 15
+});
 
-TOP200 = new L.MarkerClusterGroup();
+TOP200 = new L.MarkerClusterGroup({
+  disableClusteringAtZoom: 5
+});
 
 pHSIP = L.geoJson('', {
   onEachFeature: oef,
@@ -68,8 +76,8 @@ pTOP200 = L.geoJson('', {
 });
 
 baseLayers = {
-  "OpenStreetMap Default":  L.tileLayer.openStreetMap.mapnik(),
-  "OpenStreetMap German Style":  L.tileLayer.openStreetMap.de(),
+  "OpenStreetMap Default": L.tileLayer.openStreetMap.mapnik(),
+  "OpenStreetMap German Style": L.tileLayer.openStreetMap.de(),
   "MapQuest OSM": defaultLayer
 };
 
@@ -113,14 +121,14 @@ $.get("poly-simp.json", parsePoly);
 bZ = function() {
   var z;
   z = m.getZoom();
-  if (z > 14) {
+  if (z > 15) {
     if (m.hasLayer(BIKE)) {
       m.removeLayer(BIKE);
     }
     if (!m.hasLayer(pBIKE)) {
       return m.addLayer(pBIKE);
     }
-  } else if (z <= 14) {
+  } else if (z <= 15) {
     if (m.hasLayer(pBIKE)) {
       m.removeLayer(pBIKE);
     }
@@ -133,14 +141,14 @@ bZ = function() {
 pZ = function() {
   var z;
   z = m.getZoom();
-  if (z > 14) {
+  if (z > 15) {
     if (m.hasLayer(PED)) {
       m.removeLayer(PED);
     }
     if (!m.hasLayer(pPED)) {
       return m.addLayer(pPED);
     }
-  } else if (z <= 14) {
+  } else if (z <= 15) {
     if (m.hasLayer(pPED)) {
       m.removeLayer(pPED);
     }
@@ -153,14 +161,14 @@ pZ = function() {
 hZ = function() {
   var z;
   z = m.getZoom();
-  if (z > 14) {
+  if (z > 15) {
     if (m.hasLayer(HSIP)) {
       m.removeLayer(HSIP);
     }
     if (!m.hasLayer(pHSIP)) {
       return m.addLayer(pHSIP);
     }
-  } else if (z <= 14) {
+  } else if (z <= 15) {
     if (m.hasLayer(pHSIP)) {
       m.removeLayer(pHSIP);
     }
@@ -173,14 +181,14 @@ hZ = function() {
 rZ = function() {
   var z;
   z = m.getZoom();
-  if (z > 14) {
+  if (z > 15) {
     if (m.hasLayer(TOP200)) {
       m.removeLayer(TOP200);
     }
     if (!m.hasLayer(pTOP200)) {
       return m.addLayer(pTOP200);
     }
-  } else if (z <= 14) {
+  } else if (z <= 15) {
     if (m.hasLayer(pTOP200)) {
       m.removeLayer(pTOP200);
     }
@@ -197,7 +205,7 @@ hZ();
 rmAll = function() {
   var z;
   z = m.getZoom();
-  if (z <= 14) {
+  if (z <= 15) {
     if (m.hasLayer(BIKE)) {
       m.removeLayer(BIKE);
     }
@@ -210,7 +218,7 @@ rmAll = function() {
     if (m.hasLayer(TOP200)) {
       return m.removeLayer(TOP200);
     }
-  } else if (z > 14) {
+  } else if (z > 15) {
     if (m.hasLayer(pBIKE)) {
       m.removeLayer(pBIKE);
     }
