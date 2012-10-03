@@ -11,10 +11,10 @@ m = new L.Map("map",
     attributionControl: true
 )
 h=new L.Hash(m)
-defaultLayer = new L.TileLayer.MapQuestOpen.OSM
+defaultLayer = L.tileLayer.mapQuestOpen.osm()
 m.addLayer defaultLayer
 oef=(v, l)->
-    l.bindPopup "Crash Count: "+v.properties.CrashCount+"<br/>EPDO: "+v.properties.EPDO+"<br/>FATAL: "+v.properties.FATAL+"<br/>INJURY: "+v.properties.INJURY+"<br/>NONINJ: "+v.properties.NONINJ+"<br/>Map: "+v.properties.Map+"<br/>RANK: "+v.properties.RANK
+    l.bindPopup "Crash Count: "+v.properties.CrashCount+"<br/>EPDO: "+v.properties.EPDO+"<br/>FATAL: "+v.properties.FATAL+"<br/>INJURY: "+v.properties.INJURY+"<br/>NONINJ: "+v.properties.NONINJ+v.properties.RANK
 filter=
     HSIP:(v, l)->
         v.properties.Map=="HSIP"
@@ -33,8 +33,8 @@ pBIKE = L.geoJson('',{onEachFeature:oef,filter:filter.BIKE})
 pPED = L.geoJson('',{onEachFeature:oef,filter:filter.PED})
 pTOP200 = L.geoJson('',{onEachFeature:oef,filter:filter.RANK})
 baseLayers =
-    "OpenStreetMap Default": new L.TileLayer.OpenStreetMap.Mapnik
-    "OpenStreetMap German Style": new L.TileLayer.OpenStreetMap.DE
+    "OpenStreetMap Default": L.tileLayer.openStreetMap.mapnik()
+    "OpenStreetMap German Style": L.tileLayer.openStreetMap.de()
     "MapQuest OSM": defaultLayer
 
 m.addControl L.control.layers(baseLayers,'',{collapsed: false}) 
