@@ -16,7 +16,7 @@ m = new L.Map("map", {
 
 h = new L.Hash(m);
 
-defaultLayer = new L.TileLayer.MapQuestOpen.OSM;
+defaultLayer = new L.tileLayer.mapQuestOpen.osm();
 
 m.addLayer(defaultLayer);
 
@@ -68,8 +68,8 @@ pTOP200 = L.geoJson('', {
 });
 
 baseLayers = {
-  "OpenStreetMap Default": new L.TileLayer.OpenStreetMap.Mapnik,
-  "OpenStreetMap German Style": new L.TileLayer.OpenStreetMap.DE,
+  "OpenStreetMap Default":  L.tileLayer.openStreetMap.mapnik(),
+  "OpenStreetMap German Style":  L.tileLayer.openStreetMap.de(),
   "MapQuest OSM": defaultLayer
 };
 
