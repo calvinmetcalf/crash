@@ -1,62 +1,47 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-  <!--favicon-->
-  <link rel="shortcut icon"
- href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABKqkQAAAAAAAAAAABKqkQXSqpEmkqqRPpKqkT/SqpE/0qqRP9KqkT/SqpE/0qqROhKqkReSqpEBwAAAABKqkQASqpEAAAAAABKqkRGSqpE5EqqRP9KqkT/SqpE/0qqRP9KqkT/SqpE/0qqRP5KqkT/SqpE/0qqRLZKqkQaAAAAAAAAAABKqkQ5SqpE6UqqRP9KqkT+SqpE/0qqRP9KqkT/SqpE/0qqRP9KqkT/SqpE/kqqRP5KqkT/SqpEuEqqRAdKqkQKSqpEuEqqRP9KqkT/SalD/0mpQ/5JqUP/SqpE/0qqRPxKqkT8SqlE/0mpQ/9JqkP/SqpE/kqqRP9JqUNiS6pFMEyrRppNq0d7TKtGl0qqROFKqkT/SalD/0uqRclMrEZwTaxIakuqRbtKqkT+SalD/0uqRbpLqkXESalD7EqqRIdbslUxTqtIZVOuTTxQrUo0SqpE60yrRs9asFMUTqxJb06sSIBcs1YUTKtGsUqqRP9KqkRwS6pFgUmpQ/9KqkTEWbFTQUqqRONKqkT6Uq1MO0yrRsFTrk45TatHekmpQ/9JqUP/TKtGslKtTERKqkT8SqpEc0uqRYRJqUP/SqpE3VmxUz9KqkTiSqpE/UyqR31PrEma////AEyrRstJqUP/SqpE/kqqRNhTrk44SqpE+EqqRHNLqkWESalD/0qqRNFZsVNASqpE5UmpQ/9OrEhaTatHsVuzVhpMq0akSalD/0mpQ/9LqkXMVK9OOEqqRPxKqkR1S6pFhkmpQ/9KqkSiWLFSPk2rR7tOrEiKX7RZE0qqRN5OrEiaUq5MFkyrRs9LqkXeVa9RKUyrRopLqkXhS6tGXkyrR2xKqkXvS6pFUFKtTE5QrUoaTatHLEyrRqpKqkT/SalD/06sSHVRrEsTTq1IEk6rSGJKqkT/T61KWVSuTR9Wrk8YTqxJm0yqRhNMqkbTS6pF7kuqRf1JqUP/SalD/kmpQ/9KqkT/S6pF5kqqROFKqkT/SalD/0uqRfFMq0bsTKpG9kurRZUAAAAASalDakmpQ/1JqUP/SqpE/kqqRP9KqkT+SalD/0mpQ/9JqUP/SalD/0qqRP5JqUP/SalD/0mpQ+hJqUMZAAAAAAAAAABKqkSaSqpE/EqqRP9KqkT/SqpE/0qqRP9KqkT/SqpE/0qqRP5KqkT/SqpE/0qqROxKqkRMAAAAAEqqRAAAAAAAAAAAAEqqRGhKqkThSqpE/0qqRP9KqkT/SqpE/0qqRP9KqkT/SqpE/0qqRL9KqkQ+AAAAAAAAAAAAAAAASqpEAAAAAAAAAAAASqpEFEqqRGBKqkS5SqpE6EqqRPBKqkTZSqpEnUqqRDxKqkQMAAAAAAAAAABKqkQA8A8AAOADAADAAQAAgAEAAKDAAAB5pAAASxQAAEoUAABKFAAASSYAAPHuAACAAAAAwAEAAMADAADwBwAA/B8AAA==" />
-<title>
-Crash Clusters
-</title>
-<!--style sheets-->
-<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="css/map.css" type="text/css" />
-<link rel="stylesheet" href="http://calvinmetcalf.github.com/smoothness/smoothness.css" type="text/css" />
-<!--scripts-->
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBvl2Lx_Tj-9N_fT9arfnl8utRkVPe50uA&sensor=false"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <meta charset='utf-8'/>
 
-<script type="text/javascript" src="js/map.js"></script>
-<script type="text/javascript" src="http://calvinmetcalf.github.com/jquery-placeholder/jquery.placeholder.min.js"></script>
-</head>
-<body>
-<div id="tabs">
-    <ul>
-    <li><a href="#tabs-1">Map</a></li>
-    	<li><a href="#tabs-2">Search</a></li>
-		<li><a href="#tabs-3">Query</a></li>
-	</ul>
-    <div id="tabs-1">
-    <select id="mapName" onchange="changeMap();">
-        <option value=" WHERE 'map' = 'All Clusters 2007-2009' AND 'maprank' NOT EQUAL TO ''"  selected="selected">Top 200 Intersection Clusters 2007-2009</option>
+    <style>
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0;}
+      #map{ height: 100% }
+    </style>
+   
 
-    <option value=" WHERE 'map' = 'All Clusters 2007-2009'">2009 HSIP Clusters</option>
-    <option value=" WHERE 'map' LIKE 'Pedestrian Clusters 2002-2009'">2009 HSIP Pedestrian Clusters</option>
-    <option value=" WHERE 'map' LIKE 'Bicycle Clusters 2002-2009'">2009 HSIP Bicycle Clusters</option>
-    <option value=" WHERE 'map' LIKE 'all 2008'" >2008 HSIP Clusters</option>
-    <option value=" WHERE 'map' LIKE 'ped 2008'">2008 HSIP Pedestrian Clusters</option>
-    <option value=" WHERE 'map' LIKE 'bike 2008'">2008 HSIP Bicycle Clusters</option>
-    <option value=" WHERE 'map' LIKE 'all 2008' AND 'Rank' NOT EQUAL TO '0'" >Top 200 Intersection Clusters 2006-2008</option>
-    </select>
-    </div>
-	<div id="tabs-2">
-		 <input type="text" id="address" style="width:16em;" placeholder="Enter an Address or LatLong" />
-  <input type="submit" value="Search" onClick="geocode();"/>
-  <input type="reset" value="Reset" onClick="resetgeo();"/>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.2/leaflet.css" />
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.2/leaflet.ie.css" />
+    <![endif]-->
+    <script src="http://cdn.leafletjs.com/leaflet-0.4.2/leaflet.js"></script>
+   
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://calvinmetcalf.github.com/leaflet-hash/leaflet-hash.js"></script>
+    <script type="text/javascript" src="http://seelmann.github.com/leaflet-providers/leaflet-providers-0.0.1.js"></script>
+    <link rel="stylesheet" href="http://danzel.github.com/Leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="http://danzel.github.com/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="http://danzel.github.com/Leaflet.markercluster/dist/MarkerCluster.Default.ie.css" /><![endif]-->
+	<script src="http://danzel.github.com/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+    
+    <title>
+     Crash
+    </title>
+  </head>
+  <body>
+    <div id="map"></div>
+<script type="text/javascript" src="http://coffeescript.org/extras/coffee-script.js"></script> <script type="text/coffeescript" src="script.coffee"></script>
+</script><script type="text/javascript">
 
-        </div>
-	<div id="tabs-3">
-	<select id="rpa" onchange="changeMap();"><option value="">All RPAs</option></select>
-		<select id="muni" onchange="changeMap();" class="upper"><option value="">All Cities and Towns</option></select>
-        <select id="highwayDistrict" onchange="changeMap();"><option value="">All Highway Districts</option></select>
-         
-        </div>
-</div>
-<div id="legend"><strong>Equivalent Property<br />Damage Only (EPDO)</strong><ul style="list-type:circle;margin:0;padding-left:1em;paddding-top:0;">
-<li style="list-style-image:url(img/smallblue.png);">Less than 50</li><li style="list-style-image:url(img/smallgreen.png);">50-150</li>
-<li style="list-style-image:url(img/smallyellow.png);">150-300</li><li style="list-style-image:url(img/smallred.png);">More than 300</li></ul><a href="http://www.google.com/fusiontables/DataSource?dsrcid=1685213" target="_blank" tabindex="90">View on Google<br />Fusion Tables</a><br/><a href="https://www.google.com/fusiontables/api/query?sql=SELECT+*+FROM+1685213" target="_blank" tabindex="95">Download the file</a></div>
-<a id="logo" href="http://www.massdot.state.ma.us/planning" target="_blank"><img src="img/otp.png" alt="logo and link home" border="0"/></a>
-<div id="map"></div>
-</body>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31218444-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </html>
