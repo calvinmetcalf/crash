@@ -25,9 +25,9 @@ filter=
     RANK:(v, l)->
         v.properties.Map=="HSIP" and v.properties.RANK>0
 HSIP = new L.MarkerClusterGroup({disableClusteringAtZoom:15})
-BIKE = new L.MarkerClusterGroup({disableClusteringAtZoom:15})
-PED = new L.MarkerClusterGroup({disableClusteringAtZoom:15})
-TOP200 = new L.MarkerClusterGroup({disableClusteringAtZoom:5})
+BIKE = new L.MarkerClusterGroup({disableClusteringAtZoom:14})
+PED = new L.MarkerClusterGroup({disableClusteringAtZoom:14})
+TOP200 = new L.MarkerClusterGroup({disableClusteringAtZoom:15})
 pHSIP = L.geoJson('',{onEachFeature:oef,filter:filter.HSIP})
 pBIKE = L.geoJson('',{onEachFeature:oef,filter:filter.BIKE})
 pPED = L.geoJson('',{onEachFeature:oef,filter:filter.PED})
@@ -59,18 +59,18 @@ $.get "poly-simp.json",parsePoly
 
 bZ=()->
     z= m.getZoom()
-    if z > 15
+    if z > 14
         m.removeLayer BIKE  if m.hasLayer(BIKE)
         m.addLayer pBIKE  unless m.hasLayer(pBIKE)
-    else if z <= 15
+    else if z <= 14
         m.removeLayer pBIKE  if m.hasLayer(pBIKE)
         m.addLayer BIKE  unless m.hasLayer(BIKE)
 pZ=()->
     z= m.getZoom()
-    if z > 15
+    if z > 14
         m.removeLayer PED  if m.hasLayer(PED)
         m.addLayer pPED  unless m.hasLayer(pPED)
-    else if z <= 15
+    else if z <= 14
         m.removeLayer pPED  if m.hasLayer(pPED)
         m.addLayer PED  unless m.hasLayer(PED)
 hZ=()->
@@ -94,15 +94,17 @@ hZ()
 rmAll=()->
     z= m.getZoom()
     if z <= 15
-        m.removeLayer BIKE  if m.hasLayer(BIKE)
-        m.removeLayer PED  if m.hasLayer(PED)
         m.removeLayer HSIP  if m.hasLayer(HSIP)
         m.removeLayer TOP200  if m.hasLayer(TOP200)
     else if z > 15
         m.removeLayer pBIKE  if m.hasLayer(pBIKE)
         m.removeLayer pPED  if m.hasLayer(pPED)
-        m.removeLayer pHSIP  if m.hasLayer(pHSIP)
-        m.removeLayer pTOP200  if m.hasLayer(pTOP200)
+    if z <= 14
+        m.removeLayer BIKE  if m.hasLayer(BIKE)
+        m.removeLayer PED  if m.hasLayer(PED)
+    else if z > 14
+        m.removeLayer pBIKE  if m.hasLayer(pBIKE)
+        m.removeLayer pPED  if m.hasLayer(pPED)
 z=()->
     hZ() if cL=="HSIP"
     bZ() if cL=="BIKE"
