@@ -44,15 +44,15 @@ HSIP = new L.MarkerClusterGroup({
 });
 
 BIKE = new L.MarkerClusterGroup({
-  disableClusteringAtZoom: 15
+  disableClusteringAtZoom: 14
 });
 
 PED = new L.MarkerClusterGroup({
-  disableClusteringAtZoom: 15
+  disableClusteringAtZoom: 14
 });
 
 TOP200 = new L.MarkerClusterGroup({
-  disableClusteringAtZoom: 5
+  disableClusteringAtZoom: 15
 });
 
 pHSIP = L.geoJson('', {
@@ -121,14 +121,14 @@ $.get("poly-simp.json", parsePoly);
 bZ = function() {
   var z;
   z = m.getZoom();
-  if (z > 15) {
+  if (z > 14) {
     if (m.hasLayer(BIKE)) {
       m.removeLayer(BIKE);
     }
     if (!m.hasLayer(pBIKE)) {
       return m.addLayer(pBIKE);
     }
-  } else if (z <= 15) {
+  } else if (z <= 14) {
     if (m.hasLayer(pBIKE)) {
       m.removeLayer(pBIKE);
     }
@@ -141,14 +141,14 @@ bZ = function() {
 pZ = function() {
   var z;
   z = m.getZoom();
-  if (z > 15) {
+  if (z > 14) {
     if (m.hasLayer(PED)) {
       m.removeLayer(PED);
     }
     if (!m.hasLayer(pPED)) {
       return m.addLayer(pPED);
     }
-  } else if (z <= 15) {
+  } else if (z <= 14) {
     if (m.hasLayer(pPED)) {
       m.removeLayer(pPED);
     }
@@ -206,17 +206,11 @@ rmAll = function() {
   var z;
   z = m.getZoom();
   if (z <= 15) {
-    if (m.hasLayer(BIKE)) {
-      m.removeLayer(BIKE);
-    }
-    if (m.hasLayer(PED)) {
-      m.removeLayer(PED);
-    }
     if (m.hasLayer(HSIP)) {
       m.removeLayer(HSIP);
     }
     if (m.hasLayer(TOP200)) {
-      return m.removeLayer(TOP200);
+      m.removeLayer(TOP200);
     }
   } else if (z > 15) {
     if (m.hasLayer(pBIKE)) {
@@ -225,11 +219,20 @@ rmAll = function() {
     if (m.hasLayer(pPED)) {
       m.removeLayer(pPED);
     }
-    if (m.hasLayer(pHSIP)) {
-      m.removeLayer(pHSIP);
+  }
+  if (z <= 14) {
+    if (m.hasLayer(BIKE)) {
+      m.removeLayer(BIKE);
     }
-    if (m.hasLayer(pTOP200)) {
-      return m.removeLayer(pTOP200);
+    if (m.hasLayer(PED)) {
+      return m.removeLayer(PED);
+    }
+  } else if (z > 14) {
+    if (m.hasLayer(pBIKE)) {
+      m.removeLayer(pBIKE);
+    }
+    if (m.hasLayer(pPED)) {
+      return m.removeLayer(pPED);
     }
   }
 };
