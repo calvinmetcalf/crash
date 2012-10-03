@@ -11,7 +11,7 @@ m = new L.Map("map",
     attributionControl: true
 )
 h=new L.Hash(m)
-defaultLayer = new L.TileLayer.MapQuestOpen.OSM
+defaultLayer = L.tileLayer.mapQuestOpen.osm()
 m.addLayer defaultLayer
 oef=(v, l)->
     l.bindPopup "Crash Count: "+v.properties.CrashCount+"<br/>EPDO: "+v.properties.EPDO+"<br/>FATAL: "+v.properties.FATAL+"<br/>INJURY: "+v.properties.INJURY+"<br/>NONINJ: "+v.properties.NONINJ+"<br/>Map: "+v.properties.Map+"<br/>RANK: "+v.properties.RANK
@@ -24,17 +24,17 @@ filter=
         v.properties.Map=="PED"
     RANK:(v, l)->
         v.properties.Map=="HSIP" and v.properties.RANK>0
-HSIP = new L.MarkerClusterGroup()
-BIKE = new L.MarkerClusterGroup()
-PED = new L.MarkerClusterGroup()
-TOP200 = new L.MarkerClusterGroup()
+HSIP = new L.MarkerClusterGroup({disableClusteringAtZoom:15})
+BIKE = new L.MarkerClusterGroup({disableClusteringAtZoom:15})
+PED = new L.MarkerClusterGroup({disableClusteringAtZoom:15})
+TOP200 = new L.MarkerClusterGroup({disableClusteringAtZoom:5})
 pHSIP = L.geoJson('',{onEachFeature:oef,filter:filter.HSIP})
 pBIKE = L.geoJson('',{onEachFeature:oef,filter:filter.BIKE})
 pPED = L.geoJson('',{onEachFeature:oef,filter:filter.PED})
 pTOP200 = L.geoJson('',{onEachFeature:oef,filter:filter.RANK})
 baseLayers =
-    "OpenStreetMap Default": new L.TileLayer.OpenStreetMap.Mapnik
-    "OpenStreetMap German Style": new L.TileLayer.OpenStreetMap.DE
+    "OpenStreetMap Default": L.tileLayer.openStreetMap.mapnik()
+    "OpenStreetMap German Style": L.tileLayer.openStreetMap.de()
     "MapQuest OSM": defaultLayer
 
 m.addControl L.control.layers(baseLayers,'',{collapsed: false}) 
@@ -59,46 +59,46 @@ $.get "poly-simp.json",parsePoly
 
 bZ=()->
     z= m.getZoom()
-    if z > 14
+    if z > 15
         m.removeLayer BIKE  if m.hasLayer(BIKE)
         m.addLayer pBIKE  unless m.hasLayer(pBIKE)
-    else if z <= 14
+    else if z <= 15
         m.removeLayer pBIKE  if m.hasLayer(pBIKE)
         m.addLayer BIKE  unless m.hasLayer(BIKE)
 pZ=()->
     z= m.getZoom()
-    if z > 14
+    if z > 15
         m.removeLayer PED  if m.hasLayer(PED)
         m.addLayer pPED  unless m.hasLayer(pPED)
-    else if z <= 14
+    else if z <= 15
         m.removeLayer pPED  if m.hasLayer(pPED)
         m.addLayer PED  unless m.hasLayer(PED)
 hZ=()->
     z= m.getZoom()
-    if z > 14
+    if z > 15
         m.removeLayer HSIP  if m.hasLayer(HSIP)
         m.addLayer pHSIP  unless m.hasLayer(pHSIP)
-    else if z <= 14
+    else if z <= 15
         m.removeLayer pHSIP  if m.hasLayer(pHSIP)
         m.addLayer HSIP  unless m.hasLayer(HSIP)
 rZ=()->
     z= m.getZoom()
-    if z > 14
+    if z > 15
         m.removeLayer TOP200  if m.hasLayer(TOP200)
         m.addLayer pTOP200  unless m.hasLayer(pTOP200)
-    else if z <= 14
+    else if z <= 15
         m.removeLayer pTOP200  if m.hasLayer(pTOP200)
         m.addLayer TOP200  unless m.hasLayer(TOP200)
 cL="HSIP"
 hZ()
 rmAll=()->
     z= m.getZoom()
-    if z <= 14
+    if z <= 15
         m.removeLayer BIKE  if m.hasLayer(BIKE)
         m.removeLayer PED  if m.hasLayer(PED)
         m.removeLayer HSIP  if m.hasLayer(HSIP)
         m.removeLayer TOP200  if m.hasLayer(TOP200)
-    else if z > 14
+    else if z > 15
         m.removeLayer pBIKE  if m.hasLayer(pBIKE)
         m.removeLayer pPED  if m.hasLayer(pPED)
         m.removeLayer pHSIP  if m.hasLayer(pHSIP)
